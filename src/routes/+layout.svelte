@@ -1,7 +1,13 @@
+<script>
+	import '../app.pcss';
+</script>
+
+
+
 <nav>
-	<a href="/">Home</a>
-	<a href="/about">About</a>
+	<a href="/">home</a>
+	<a href="/blog">blog</a>
+	<a href="/python">Python</a>
 </nav>
 
-<slot></slot>
-<script>import "../app.pcss";</script>
+<slot />
