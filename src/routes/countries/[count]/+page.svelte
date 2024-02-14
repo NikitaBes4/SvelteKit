@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>{$page.params.cont}</title>
+	<title>{$page.params.count}</title>
 </svelte:head>
 
 <div style="border:1px solid blue;padding:25px">

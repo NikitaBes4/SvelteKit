@@ -9,6 +9,7 @@
 	<a href="/blog">blog</a>
 	<a href="/python">python</a>
 	<a href="/countries">countries</a>
+	<a href="/earth">earth</a>
 </nav>
 
 <slot />

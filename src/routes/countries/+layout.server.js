@@ -2,7 +2,7 @@ import  * as api  from 'node-calls-python';
 const py = api.interpreter;
     
     
-let pymodule = py.importSync("src/lib/py/countriesdata.py");
+let pymodule = py.importSync("src/lib/py/pydata.py");
 // pymodule = py.importSync("$lib/py/countriesdata.py", true);
 
 	export  function load({ params }) {
