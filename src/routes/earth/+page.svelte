@@ -1,12 +1,40 @@
 <script>
 	/** @type {import('./$types').PageData} */
 	export let data;
-    let selected =data.regions[0]
+    import { getCookie, setCookie, deleteCookie } from 'svelte-cookie';
+	import { onMount } from 'svelte';
+    //let selected =data.regions[0]//'AFRICA'
+	let sel_cont = getCookie('selcont');
+	console.log('sel_cont',sel_cont)
+	
+	let selected
+
+	onMount(() => {
+        console.log(document.cookie)
+		const cookieValue = document.cookie
+             .split("; ")
+             .find((row) => row.startsWith("selcont="))
+             ?.split("=")[1];
+
+             if(cookieValue){
+			   selected = cookieValue}
+			 else{
+				selected =data.regions[0]//'AFRICA'
+			 }  
+
+			})
+
+    const selcontinent =(cont)=>{
+		selected=cont;
+		document.cookie = `selcont=${cont}`;
+   };
+
 </script>
+{JSON.stringify(data.selcont)}
 <div class="layout">
 	<main>
 		<div style="border:1px solid blue;padding:25px">
-
+        <h1>проверка</h1>
             {#each data.alldata.filter(cntr =>cntr[1]==selected ) as item}
                 <p>{item[0]}</p>
             {/each}
@@ -16,7 +44,7 @@
 	<aside>
 		<ul>
 			{#each data.regions as reg}
-				<li on:click={()=>selected=reg} style="cursor: pointer">
+				<li on:click={()=>selcontinent(reg)} style="cursor: pointer">
                     {reg.toLowerCase()}
 				</li>
 			{/each}
