@@ -9,7 +9,7 @@ let pymodule = py.importSync("src/lib/py/pydata.py");
 		console.log(last)
 
 		const result2 = py.evalSync(pymodule, "getcountries()");
-		result2.visited = last
+		result2.last = last
         console.log(result2)
 		return result2;
 
