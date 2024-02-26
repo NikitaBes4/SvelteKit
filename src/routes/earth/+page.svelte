@@ -15,7 +15,7 @@
 			   	selected = cookieValue}
 
 			 else{
-				selected =data.regions[0]
+				selected = data.regions[0]
 				
 			 }  
 
