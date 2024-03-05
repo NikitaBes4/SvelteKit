@@ -10,6 +10,7 @@
 	<a href="/python">python</a>
 	<a href="/countries">countries</a>
 	<a href="/earth">earth</a>
+	<a href="/todo">todo</a>
 </nav>
 
 <slot />
