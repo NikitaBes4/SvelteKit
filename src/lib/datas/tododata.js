@@ -5,6 +5,7 @@ export function getTodos(userid) {
 		db.set(userid, [{
 			id: crypto.randomUUID(),
 			description: 'Учите SvelteKit',
+			img: '',
 			done: false
 		}]);
 	}
@@ -12,7 +13,7 @@ export function getTodos(userid) {
 	return db.get(userid);
 }
 
-export function createTodo(userid, description) {
+export function createTodo(userid, description, img) {
 
 	if (description === '') {
 		throw new Error('План не может быть пустым');
@@ -22,6 +23,7 @@ export function createTodo(userid, description) {
 	todos.push({
 		id: crypto.randomUUID(),
 		description,
+		img,
 		done: false
 	});
 }
