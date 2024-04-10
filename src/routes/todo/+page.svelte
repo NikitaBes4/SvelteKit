@@ -2,7 +2,6 @@
 	import { enhance } from '$app/forms';
 	export let data;
 	export let form;
-
 	let creating = false;
 	let fileInput;
 	let pict;
@@ -12,20 +11,33 @@
 		reader.readAsDataURL(image);
 		reader.onload = (e) => {
 			pict = e.target.result;
+			console.log(e,pict);
+
+			console.log(fileInput.files);
+			
+			const inp = document.querySelector("#file");
+		    console.log(inp.files)
 		};
 	}
 
+	function getFile(){
 
+		fileInput.click()
+	}
 </script>
 
 <div class="centered">
 	<h1>todos</h1>
+	<div>
+
+	</div>
 
 	{#if form?.error}
 		<p class="error">{form.error}</p>
 	{/if}
 
-	<form  enctype='multipart/form-data'
+	<form
+		enctype="multipart/form-data"
 		method="POST"
 		action="?/create"
 		class="mx-auto max-w-sm"
@@ -33,33 +45,34 @@
 	>
 		<div class="group relative z-0 mb-5 w-full">
 			<label>
-				add a todo:
+				Добавить:
+				
 				<input
-					class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 text-xs text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+			
 					name="description"
 					value={form?.description ?? ''}
 					autocomplete="off"
-					
 				/>
+				
+				<input type="hidden" value={pict} name="img" id="img" />
+				<div>
+					<label for="file" class="btn" on:click={getFile}> Выберите файл 
+					<input
+						class="invisible border-input bg-background file:text-foreground placeholder:text-muted-foreground focus-visible:ring-ring flex h-9 w-full rounded-md border px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-1 disabled:cursor-not-allowed disabled:opacity-50"
+						bind:this={fileInput}
+						on:change={() => getBase64(fileInput.files[0])}
+						name="file"
+						id="file"
+						type="file"
+						accept=".png,.jpg"
+					/></label>
+				</div>
 			</label>
-			<div>
-				<input
-				bind:this={fileInput}
-				on:change={() => getBase64(fileInput.files[0])}
-				name="file"
-				type="file"
-				accept=".png,.jpg"
-			/>
-
-			</div>
 		</div>
 		<div>
-			<input type="submit" value="Save" />
+			<input type="submit" value="Save" class="btn" />
 		</div>
 	</form>
-	<div>
-		<img src={pict}/>
-	</div>
 
 	<div class="todos">
 		{#each data.todos as todo (todo.id)}
@@ -67,25 +80,32 @@
 				<input type="hidden" name="id" value={todo.id} />
 				<div class="item" style="display:flex; width:100%; align-items: center;">
 					<div style="flex:1">{todo.description}</div>
+					<img class = "w-10" src = {pict}/>
 					<button class="del" title="удалить" />
 				</div>
 			</form>
 		{/each}
 	</div>
-
 </div>
 
 <style>
+		.images {
+		border: 1px solid rgb(0, 0, 0);
+		overflow-y: auto;
+		height: 200px;
+		padding: 50px;
+	}
+	
 	.centered {
 		max-width: 20em;
 		margin: 50px auto;
-		background: beige;
+		background: rgb(185, 141, 21);
 		padding: 20px;
 		box-shadow: 0 0 20px rgba(0, 0, 0, 1);
 		min-width: 33%;
 	}
 	.todos {
-		border: 1px solid gray;
+		border: 1px solid rgb(0, 0, 0);
 		overflow-y: auto;
 		height: 200px;
 		padding: 10px;
@@ -102,7 +122,7 @@
 		flex: 1;
 	} */
 
-	.del   {
+	.del {
 		border: none;
 		background: url('remove.svg') no-repeat 50% 50%;
 		background-size: 1rem 1rem;
@@ -119,7 +139,7 @@
 	}
 
 	.item:hover {
-		background: #dde;
+		background: rgb(0, 0, 0);
 	}
 
 	.saving {

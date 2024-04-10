@@ -4,8 +4,6 @@ import * as db from '$lib/datas/tododata.js';
 import * as fs from 'fs'
 import { Buffer } from 'buffer';
 
-
-
 export function load({ cookies }) {
 	let id = cookies.get('userid');
 
@@ -24,7 +22,9 @@ export const actions = {
 		const data = await request.formData();
 
 		let offile = data.get("file")
-        console.log("offile-", offile, offile.name)
+		let img64 =  data .get("img")
+
+        console.log("offile-", offile, offile.name, img64)
 
 
 
@@ -36,6 +36,11 @@ export const actions = {
 
 			if (offile) {
 				const filedata = new Uint8Array(Buffer.from(await offile.arrayBuffer()));
+
+				const buff=`data:image/png;base64,${Buffer.from(filedata).toString('base64')}`;
+                fs.writeFileSync('static/img.png', buff);    
+
+
 				fs.writeFile(`static/${offile.name}`, filedata, (err) => {
 					if (err) {
 						return fail(500, { error: err.message });
