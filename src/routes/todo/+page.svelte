@@ -11,12 +11,7 @@
 		reader.readAsDataURL(image);
 		reader.onload = (e) => {
 			pict = e.target.result;
-			console.log(e,pict);
 
-			console.log(fileInput.files);
-			
-			const inp = document.querySelector("#file");
-		    console.log(inp.files)
 		};
 	}
 
@@ -65,6 +60,7 @@
 						id="file"
 						type="file"
 						accept=".png,.jpg"
+						
 					/></label>
 				</div>
 			</label>
@@ -76,11 +72,11 @@
 
 	<div class="todos">
 		{#each data.todos as todo (todo.id)}
-			<form method="POST" action="?/delete">
+			<form method="POST" action="?/delete" use:enhance>
 				<input type="hidden" name="id" value={todo.id} />
 				<div class="item" style="display:flex; width:100%; align-items: center;">
 					<div style="flex:1">{todo.description}</div>
-					<img class = "w-10" src = {pict}/>
+					<img class = "w-10" src = {todo.img}/>
 					<button class="del" title="удалить" />
 				</div>
 			</form>

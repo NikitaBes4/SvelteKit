@@ -22,7 +22,7 @@ export const actions = {
 		const data = await request.formData();
 
 		let offile = data.get("file")
-		let img64 =  data .get("img")
+		let img64 =  data.get("img")
 
         console.log("offile-", offile, offile.name, img64)
 
@@ -31,23 +31,7 @@ export const actions = {
 		// db.createTodo(cookies.get('userid'), data.get('description'));
 
 		try {
-			db.createTodo(cookies.get('userid'), data.get('description'), data.get('img'));
-
-
-			if (offile) {
-				const filedata = new Uint8Array(Buffer.from(await offile.arrayBuffer()));
-
-				const buff=`data:image/png;base64,${Buffer.from(filedata).toString('base64')}`;
-                fs.writeFileSync('static/img.png', buff);    
-
-
-				fs.writeFile(`static/${offile.name}`, filedata, (err) => {
-					if (err) {
-						return fail(500, { error: err.message });
-					}
-					console.log('Файл сохранен');
-				});
-			}
+			db.createTodo(cookies.get('userid'), data.get('description'), img64);
 	
 
 
