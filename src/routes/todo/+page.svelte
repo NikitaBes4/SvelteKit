@@ -2,9 +2,11 @@
 	import { enhance } from '$app/forms';
 	export let data;
 	export let form;
+
 	let creating = false;
 	let fileInput;
 	let pict;
+	let dateEnd;
 
 	function getBase64(image) {
 		const reader = new FileReader();
@@ -64,6 +66,7 @@
 					/></label>
 				</div>
 			</label>
+			<input bind:this = {dateEnd} type = "date" name = "dateEnd"/>
 		</div>
 		<div>
 			<input type="submit" value="Save" class="btn" />
@@ -75,9 +78,12 @@
 			<form method="POST" action="?/delete" use:enhance>
 				<input type="hidden" name="id" value={todo.id} />
 				<div class="item" style="display:flex; width:100%; align-items: center;">
+					<div class:end={new Date(todo.dateEnd) < new Date()} class="item"></div>
 					<div style="flex:1">{todo.description}</div>
+					<div>{new Date(todo.dateEnd).toLocaleDateString()}</div>
 					<img class = "w-10" src = {todo.img}/>
 					<button class="del" title="удалить" />
+					
 				</div>
 			</form>
 		{/each}
@@ -85,6 +91,10 @@
 </div>
 
 <style>
+	.end{
+		background-color: red;
+		color:white;
+	}
 		.images {
 		border: 1px solid rgb(0, 0, 0);
 		overflow-y: auto;
