@@ -27,6 +27,6 @@
   "dependencies": {
     "cookie": "^0.6.0",
     "date-picker-svelte": "^2.12.0",
-    "node-calls-python": "^1.8.4"
+    "node-calls-python": "^1.9.1"
   }
 }

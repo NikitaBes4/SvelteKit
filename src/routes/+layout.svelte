@@ -11,6 +11,7 @@
 	<a href="/countries">countries</a>
 	<a href="/earth">earth</a>
 	<a href="/todo">todo</a>
+	<a href="/users">users</a>
 </nav>
 
 <slot />
