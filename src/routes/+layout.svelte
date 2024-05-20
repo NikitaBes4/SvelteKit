@@ -6,12 +6,12 @@
 
 <nav>
 	<a href="/">home</a>
-	<a href="/blog">blog</a>
-	<a href="/python">python</a>
-	<a href="/countries">countries</a>
-	<a href="/earth">earth</a>
-	<a href="/todo">todo</a>
-	<a href="/users">users</a>
+	<a href="/blog">Блог</a>
+	<a href="/python">Питон</a>
+	<a href="/countries">Страны</a>
+	<a href="/earth">Земля</a>
+	<a href="/todo">Здачи</a>
+	<a href="/posts">Посты</a>
 </nav>
 
 <slot />
