@@ -12,6 +12,7 @@
 	<a href="/earth">Земля</a>
 	<a href="/todo">Здачи</a>
 	<a href="/posts">Посты</a>
+	<a href="/posts2">Посты версия 2</a>
 </nav>
 
 <slot />
